@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "ÖzellikTipiEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br /><br /><br /><br />
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Özellik Tipi Ekle
+            </header>
+            <div class="panel-body">
+                <form role="form" class="form-horizontal tasi-form" action="/Admin/OzellikTipiEkle" method="post">
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Özellik Tipi Adı</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="" id="f-name" class="form-control" name="Adi">
+                            <p class="help-block">Successfully done</p>
+                        </div>
+                    </div>
+                    <div class="form-group has-error">
+                        <label class="col-lg-2 control-label">Açıklama</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="" id="l-name" class="form-control" name="Aciklama">
+                            <p class="help-block">Aha you gave a wrong info</p>
+                        </div>
+                    </div>
+                    <div class="form-group has-warning">
+                        <label class="col-lg-2 control-label">Kategori</label>
+                        <div class="col-lg-10">
+                            <select class="spinner-input form-control" name="KategoriId">
+                                @foreach (var item in ViewBag.Kategoriler)
+                                {
+
+                                    <option value="@item.Id">@item.Adi</option>
+
+                                }
+                            </select>
+                        </div>
+                    </div>
+                 
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-danger" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+

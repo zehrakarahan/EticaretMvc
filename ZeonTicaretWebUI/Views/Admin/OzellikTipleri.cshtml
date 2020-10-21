@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ZeonTicaretWebUI.Models.OzellikTip>
+@{
+    ViewBag.Title = "Ozellik Tipleri";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<section class="panel">
+    <header class="panel-heading">
+        Özellik Tipleri
+    </header>
+    <div class="panel-body">
+        <div class="adv-table editable-table ">
+            <div class="clearfix">
+                <div class="btn-group" style="margin-bottom:15px; margin-top:15px;">
+                    <a href="/Admin/OzellikTipiEkle" class="btn btn-success">
+                        Yeni Özellik Tipi<i class="icon-plus"></i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="space15"></div>
+            <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                <thead>
+                    <tr>
+                        <th>Özellik Tipi Adı</th>
+                        <th>Açıklama</th>
+                        <th>Kategorisi</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="">
+                            <td>@item.Adi</td>
+                            <td>@item.Aciklama</td>
+                            @if (item.Kategori != null)
+                            {
+                                <td>@item.Kategori.Adi</td>
+                            }
+                            
+                            <td>
+                                <a class="edit" href="/Admin/OzellikTipGuncelle/@item.Id">
+                                    <i class="icon-pencil"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="delete" href="/Admin/OzellikTipSil/@item.Id">
+                                    <i class="icon-trash"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+

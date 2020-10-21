@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ZeonTicaretWebUI.Models.Urun>
+<script src="~/Content/Zeon/js/jquery-1.10.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".sepeteAt").click(function () {
+            var id = $(this).attr("name");
+            $.ajax({
+                type: "GET",
+                url: "/Home/SepeteEkleme",
+                data: { id: id },
+                success: function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Home/MiniSepetWidget",
+                        success:function(veri)
+                        {
+                            $(".cart-all").html('');
+                            $(".cart-all").html(veri);
+                            alert("ürün sepete eklendi.");
+                        }
+                    });
+                },
+                error:function(){
+                    alert("ürün sepete eklenemedi.");
+                }
+            });
+        });
+        
+    });
+</script>
+<div class="box">
+    <div class="container">
+        <div class="tesla-carousel" data-tesla-plugin="carousel" data-tesla-container=".tesla-carousel-items" data-tesla-item=">div" data-tesla-autoplay="false" data-tesla-rotate="false">
+            <div class="site-title">
+                <ul class="wrapper-arrows">
+                    <li><i class="icon-517 prev" title="left arrow"></i></li>
+                    <li><i class="icon-501 next" title="right arrow"></i></li>
+                </ul>
+                <div class="site-inside"><span>Ürünler</span></div>
+            </div>
+            <div class="row">
+                <div class="tesla-carousel-items">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-3 col-xs-6">
+                            <div class="product">
+                                <div class="product-cover">
+                                    <span class="product-action">
+                                       
+                                    </span>
+                                    <div class="product-cover-hover"><span><a href="/Home/UrunDetay/@item.Adi">Görüntüle</a></span></div>
+                                       
+                                    
+                                    
+                                    
+                                </div>
+                                <div class="product-details">
+                                    <h1><a href="/Home/UrunDetay/@item.Adi">@item.Adi</a></h1>
+                                    <p>@item.Aciklama</p>
+                                    <div class="product-price">
+                                        <a name="@item.Id" class="sepeteAt">
+                                        <i class="icon-257" title="add to cart"></i></a>
+
+                                        @item.SatisFiyati
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                  
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
